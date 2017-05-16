@@ -34,7 +34,7 @@ describe Oystercard do
 	end
 
 	it "knows it has been tapped out" do
-		expect(subject.tap_out).to eq false
+		expect(subject.tap_out).to eq nil
 	end
 
 	it "Raise tap in error if there is less than one pound" do
