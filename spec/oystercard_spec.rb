@@ -21,5 +21,4 @@ describe Oystercard do
 	it 'can deduct from balance' do
 	expect{ subject.deduct 1}.to change{subject.balance}.by -1
 	end
-	
 end
