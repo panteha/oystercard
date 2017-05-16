@@ -21,4 +21,9 @@ describe Oystercard do
 	it 'can deduct from balance' do
 	expect{ subject.deduct 1}.to change{subject.balance}.by -1
 	end
+
+	it "knows it's in use" do
+		expect(subject.tap_in).to eq true 
+	end
+
 end
