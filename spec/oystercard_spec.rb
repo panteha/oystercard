@@ -6,6 +6,9 @@ describe Oystercard do
 	it { is_expected.to respond_to(:tap_out).with(1).argument }
 	let(:station){double :station}
 
+	let(:entry_station) { double :station }
+	let(:exit_station) { double :station }
+
 	it "instance has default value of 0" do
 		expect(subject.balance).to eq(0)
 	end
@@ -35,7 +38,7 @@ describe Oystercard do
 	end
 
 	it "knows it has been tapped out" do
-		expect(subject.tap_out(station)).to eq false
+		expect(subject.in_journey?).to eq false
 	end
 
 	it "Raise tap in error if there is less than one pound" do
@@ -47,7 +50,19 @@ describe Oystercard do
 	it "Saves tap in station" do
 		subject.balance = 5
 		subject.tap_in(station)
-		expect( subject.entry_station).to eq [station]
+		expect(subject.entry_station).to eq station
 	end
+
+	it "has empty list of journey by default" do
+		expect(subject.list_of_journeys).to be_empty
+	end
+
+	it "Saves tap out station" do
+		subject.balance = 5
+		subject.tap_in(entry_station)
+		subject.tap_out(exit_station)
+		expect( subject.list_of_journeys).to eq ([{entry_station => exit_station}])
+	end
+
 
 end
