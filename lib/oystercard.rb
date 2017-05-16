@@ -1,5 +1,5 @@
 class Oystercard
-  attr_reader :balance
+  attr_accessor :balance
   MAXIMUM_BALANCE = 90
 
   def initialize()
@@ -21,6 +21,8 @@ class Oystercard
   end
 
   def tap_in
+    puts "*****"
+    raise "Not enough funds" if @balance < 1
     @in_journey = true
   end
 

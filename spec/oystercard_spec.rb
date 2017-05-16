@@ -23,6 +23,7 @@ describe Oystercard do
 	end
 
 	it "knows it has been tapped in" do
+		subject.balance = 5
 		expect(subject.tap_in).to eq true
 	end
 
@@ -33,4 +34,10 @@ describe Oystercard do
 	it "knows it has been tapped out" do
 		expect(subject.tap_out).to eq false
 	end
+
+	it "Raise tap in error if there is less than one pound" do
+		#subject.balance = 0.5
+		expect{ subject.tap_in }.to raise_error "Not enough funds"
+	end
+
 end
