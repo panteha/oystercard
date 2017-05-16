@@ -3,6 +3,7 @@ require 'oystercard'
 describe Oystercard do
 	it { is_expected.to respond_to(:top_up).with(1).argument }
 	it { is_expected.to respond_to(:deduct).with(1).argument }
+	it { is_expected.to respond_to(:tap_out).with(1).argument }
 	let(:station){double :station}
 
 	it "instance has default value of 0" do
@@ -34,7 +35,7 @@ describe Oystercard do
 	end
 
 	it "knows it has been tapped out" do
-		expect(subject.tap_out).to eq nil
+		expect(subject.tap_out(station)).to eq false
 	end
 
 	it "Raise tap in error if there is less than one pound" do
@@ -46,7 +47,7 @@ describe Oystercard do
 	it "Saves tap in station" do
 		subject.balance = 5
 		subject.tap_in(station)
-		expect( subject.entry_station).to eq station
+		expect( subject.entry_station).to eq [station]
 	end
 
 end
