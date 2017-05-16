@@ -3,6 +3,7 @@ require 'oystercard'
 describe Oystercard do
 	it { is_expected.to respond_to(:top_up).with(1).argument }
 	it { is_expected.to respond_to(:deduct).with(1).argument }
+	let(:station){double :station}
 
 	it "instance has default value of 0" do
 		expect(subject.balance).to eq(0)
@@ -24,7 +25,8 @@ describe Oystercard do
 
 	it "knows it has been tapped in" do
 		subject.balance = 5
-		expect(subject.tap_in).to eq true
+		subject.tap_in(station)
+		expect(subject.in_journey?).to eq true
 	end
 
 	it "card knows when not in use" do
@@ -37,7 +39,14 @@ describe Oystercard do
 
 	it "Raise tap in error if there is less than one pound" do
 		#subject.balance = 0.5
-		expect{ subject.tap_in }.to raise_error "Not enough funds"
+		expect{ subject.tap_in(station) }.to raise_error "Not enough funds"
+	end
+
+
+	it "Saves tap in station" do
+		subject.balance = 5
+		subject.tap_in(station)
+		expect( subject.entry_station).to eq station
 	end
 
 end
