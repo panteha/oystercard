@@ -22,8 +22,15 @@ describe Oystercard do
 	expect{ subject.deduct 1}.to change{subject.balance}.by -1
 	end
 
-	it "knows it's in use" do
-		expect(subject.tap_in).to eq true 
+	it "knows it has been tapped in" do
+		expect(subject.tap_in).to eq true
 	end
 
+	it "card knows when not in use" do
+		expect(subject.in_journey?).to eq false
+	end
+
+	it "knows it has been tapped out" do
+		expect(subject.tap_out).to eq false
+	end
 end
