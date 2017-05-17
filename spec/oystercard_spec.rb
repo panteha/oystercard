@@ -64,4 +64,23 @@ describe Oystercard do
 		expect(subject.list_of_journeys[0].exit_station).to eq exit_station
 	end
 
+	it "deducts penalty fare if we do not tap in" do
+		subject.balance = 10
+		subject.tap_out(exit_station)
+		expect(subject.balance).to eq 4
+	end
+
+	it "deducts penalty fare if we do not tap out" do
+		subject.balance = 10
+		subject.tap_in(entry_station)
+		subject.tap_in(entry_station)
+		expect(subject.balance).to eq 4
+	end
+
+	it "deducts minimum fare if we tap in and tap out" do
+		subject.balance = 10
+		subject.tap_in(entry_station)
+		subject.tap_out(exit_station)
+		expect(subject.balance).to eq 9
+	end
 end
