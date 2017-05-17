@@ -61,8 +61,7 @@ describe Oystercard do
 		subject.balance = 5
 		subject.tap_in(entry_station)
 		subject.tap_out(exit_station)
-		expect( subject.list_of_journeys).to eq ([{entry_station => exit_station}])
+		expect(subject.list_of_journeys[0].exit_station).to eq exit_station
 	end
-
 
 end
