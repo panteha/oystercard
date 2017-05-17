@@ -1,8 +1,8 @@
 class Journey
   attr_reader :start_station, :end_station
 
-  MINIMUM_COST = 4
-  PENALTY = 8
+  MINIMUM_COST = 2
+  PENALTY = 6
 
   def initialize(start_station)
     @start_station = start_station
@@ -14,13 +14,13 @@ class Journey
   end
 
   def calculate_cost
-    return PENALTY if incomplete?
-    MINIMUM_COST
+    return PENALTY unless complete?
+    return MINIMUM_COST if complete?
+    0
   end
 
-  def incomplete?
-    @start_station && !@end_station
+  def complete?
+    @start_station && @end_station
   end
-
 
 end
