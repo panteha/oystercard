@@ -4,7 +4,7 @@ class Journey
   MINIMUM_COST = 2
   PENALTY = 6
 
-  def initialize(start_station)
+  def initialize(start_station = nil)
     @start_station = start_station
     @end_station = nil
   end
