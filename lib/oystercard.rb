@@ -30,7 +30,7 @@ class Oystercard
 
   def tap_out(exit_station)
     @current_journey = Journey.new(nil, exit_station) if !in_journey?
-    @current_journey.exit_station = exit_station
+    @current_journey.complete(exit_station)
     deduct(@current_journey.fare)
     @list_of_journeys << @current_journey
     @current_journey = nil

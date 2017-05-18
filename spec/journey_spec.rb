@@ -4,7 +4,9 @@ describe Journey do
   let(:station1){double :station}
   let(:station2){double :station}
 
-  let(:subject){Journey.new(:station1, :station2)}
+  # made a complete journey
+  let(:subject){Journey.new(station1, station2)}
+
   let(:no_tap_out_journey){Journey.new(:station1, nil)}
   let(:no_tap_in_journey){Journey.new(nil, :station2)}
 
@@ -12,11 +14,11 @@ describe Journey do
   it {is_expected.to respond_to :exit_station}
 
   it "returns the start station of the journey" do
-    expect(subject.entry_station). to eq :station1
+    expect(subject.entry_station). to eq station1
   end
 
   it "returns the end station of the journey" do
-    expect(subject.exit_station).to eq :station2
+    expect(subject.exit_station).to eq station2
   end
 
   it "is complete if there is a entry and exit station" do

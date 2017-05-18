@@ -5,8 +5,12 @@ class Journey
 attr_reader :entry_station
 attr_accessor :exit_station
 
-  def initialize(entry_station, exit_station)
+  def initialize(entry_station = nil, exit_station = nil)
     @entry_station = entry_station
+    @exit_station = exit_station
+  end
+
+  def complete(exit_station)
     @exit_station = exit_station
   end
 
@@ -21,6 +25,7 @@ attr_accessor :exit_station
       MINIMUM_FARE
     end
   end
+
   # def entry_station
   #
   # end
