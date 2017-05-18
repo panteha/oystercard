@@ -47,11 +47,11 @@ describe Oystercard do
 	end
 
 
-	it "Saves tap in station" do
-		subject.balance = 5
-		subject.tap_in(station)
-		expect(subject.entry_station).to eq station
-	end
+	# it "Saves tap in station" do
+	# 	subject.balance = 5
+	# 	subject.tap_in(station)
+	# 	expect(subject.entry_station).to eq station
+	# end
 
 	it "has empty list of journey by default" do
 		expect(subject.list_of_journeys).to be_empty
